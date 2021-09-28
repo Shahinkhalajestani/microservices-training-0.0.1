@@ -3,6 +3,8 @@ package com.shahinkhalajestani.currencyexchangeservice.controllers;
 import com.shahinkhalajestani.currencyexchangeservice.models.CurrencyExchange;
 import com.shahinkhalajestani.currencyexchangeservice.service.CurrencyExchangeService;
 import org.hibernate.engine.internal.Collections;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +17,8 @@ import java.util.List;
 @RestController
 public class CurrencyExchangeController {
 
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @Autowired
     private Environment environment;
 
@@ -24,6 +28,7 @@ public class CurrencyExchangeController {
     @GetMapping(value = "/currency-exchange/from/{from}/to/{to}")
     public CurrencyExchange retrieveExchangeValue(@PathVariable String from,
                                                         @PathVariable String to) {
+        logger.info("retrieve exchange value called with {} to {}",from,to);
         List<CurrencyExchange> currencyExchangeList = currencyExchangeService.findByFromAndTo(from, to);
         if (currencyExchangeList==null || currencyExchangeList.isEmpty()){
             throw new RuntimeException("Currency List Is Empty");
