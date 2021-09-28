@@ -16,10 +16,11 @@ public class ApiGateWayConfiguration {
     @Bean
     public RouteLocator gatewayRouter(RouteLocatorBuilder builder) {
         return builder.routes()
-                .route(p -> p.path("/get")
-                        .filters(f -> f.addRequestHeader("MyHeader", "MyUri")
-                                .addRequestParameter("Param", "MyValue"))
-                        .uri("http://httpbin.org:80"))
+                //idk what is the usage for this
+//                .route(p -> p.path("/get")
+//                        .filters(f -> f.addRequestHeader("MyHeader", "MyUri")
+//                                .addRequestParameter("Param", "MyValue"))
+//                        .uri("http://httpbin.org:80"))
                 .route(p -> p.path("/currency-exchange/**")
                         .uri("lb://currency-exchange"))
                 .route(p -> p.path("/currency-conversion/**")
