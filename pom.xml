@@ -24,6 +24,7 @@
         <module>naming-server</module>
         <module>spring-cloud-config-server</module>
         <module>api-gateway</module>
+        <module>aggregator-service</module>
     </modules>
 
     <properties>
