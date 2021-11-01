@@ -30,8 +30,12 @@ public class AggregatorServiceApplication {
             userService.saveUser(new AppUser(null,"ali@123","123","ali",new ArrayList<>()));
 
             userService.addRoleToUser("shahin@123","ROLE_SUPER_ADMIN");
+            userService.addRoleToUser("shahin@123","ROLE_MANAGER");
+            userService.addRoleToUser("shahin@123","ROLE_USER");
+            userService.addRoleToUser("shahin@123","ROLE_ADMIN");
             userService.addRoleToUser("ramtin@123","ROLE_ADMIN");
             userService.addRoleToUser("ramtin@123","ROLE_MANAGER");
+            userService.addRoleToUser("ramtin@123","ROLE_USER");
             userService.addRoleToUser("ali@123","ROLE_USER");
         };
     }
