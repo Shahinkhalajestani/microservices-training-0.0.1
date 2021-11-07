@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,7 +22,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 @Service
 @Transactional
-public class JwtTokenRefreshServiceImpl implements JwtTokenRefreshService {
+public class JwtServiceImpl implements JwtService {
 
     private final JwtUtility jwtUtility;
     private final AppUserService userService;

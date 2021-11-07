@@ -4,7 +4,7 @@ import com.shahintraining.aggregatorservice.domain.AppUser;
 import com.shahintraining.aggregatorservice.domain.Role;
 import com.shahintraining.aggregatorservice.domain.RoleToUserDto;
 import com.shahintraining.aggregatorservice.service.AppUserService;
-import com.shahintraining.aggregatorservice.service.JwtTokenRefreshService;
+import com.shahintraining.aggregatorservice.service.JwtService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -29,7 +29,7 @@ import java.util.List;
 public class UserController {
 
     private final AppUserService userService;
-    private final JwtTokenRefreshService jwtTokenService;
+    private final JwtService jwtTokenService;
 
     @PreAuthorize("hasAnyRole('ROLE_USER')")
     @GetMapping(value = "/users")

@@ -8,6 +8,6 @@ import javax.servlet.http.HttpServletResponse;
  * @project microservices
  * @since 11/1/2021
  */
-public interface JwtTokenRefreshService {
+public interface JwtService {
     void refreshToken(HttpServletRequest request, HttpServletResponse response);
 }
