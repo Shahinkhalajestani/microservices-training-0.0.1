@@ -1,5 +1,6 @@
 package com.shahintraining.aggregatorservice.domain;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +21,7 @@ public class AppUser {
     @Column(name = "id")
     private Long id;
 
+    @ApiModelProperty(required = true)
     @Column(name = "username")
     @NonNull
     private String username;

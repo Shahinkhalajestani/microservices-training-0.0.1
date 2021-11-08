@@ -52,6 +52,23 @@ services:
         SPRING_ZIPKING_SENDER_TYPE: rabbit
 
 
+  aggregator-service:
+    image: shahintraining/aggregator-service:0.0.1-SNAPSHOT
+    mem_limit: 700m
+    ports:
+      - "9542:9542"
+    networks:
+      - currency-network
+    depends_on:
+      - naming-server
+      - rabbitmq
+    environment:
+        EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+        SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/
+        RABBIT_URI: ampq://guest:guest@rabbitmq:5672
+        SPRING_RABBITMQ_HOST: rabbitmq
+        SPRING_ZIPKING_SENDER_TYPE: rabbit
+
   naming-server:
     image: shahintraining/naming-server:0.0.1-SNAPSHOT
     mem_limit : 700m
