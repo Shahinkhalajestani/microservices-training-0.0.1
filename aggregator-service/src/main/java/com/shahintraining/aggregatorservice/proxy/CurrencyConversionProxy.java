@@ -12,7 +12,7 @@ import java.math.BigDecimal;
  * @project microservices
  * @since 11/2/2021
  */
-@FeignClient(name = "currency-conversion")
+@FeignClient(name = "currency-conversion",configuration = FeignClientCurrencyConfiguration.class)
 public interface CurrencyConversionProxy {
 
     @GetMapping("/currency-conversion-feign/from/{from}/to/{to}/quantity/{quantity}")

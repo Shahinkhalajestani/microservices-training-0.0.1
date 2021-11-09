@@ -2,6 +2,7 @@ package com.shahintraining.aggregatorservice.controller;
 
 import com.shahintraining.aggregatorservice.domain.CurrencyConversion;
 import com.shahintraining.aggregatorservice.proxy.CurrencyConversionProxy;
+import com.shahintraining.aggregatorservice.proxy.CurrencyExchangeProxy;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,8 @@ import java.math.BigDecimal;
 public class CurrencyController {
 
     private final CurrencyConversionProxy currencyConversionProxy;
+    private final CurrencyExchangeProxy currencyExchangeProxy;
+
 
     @PreAuthorize("hasAnyAuthority('ROLE_SUPER_ADMIN')")
     @GetMapping("/aggregator-service/currency/from/{from}/to/{to}/quantity/{quantity}")
@@ -31,6 +34,13 @@ public class CurrencyController {
                                                                           @PathVariable("quantity") BigDecimal quantity) {
 
         return new ResponseEntity(currencyConversionProxy.returnConvertedValue(from, to, quantity), HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPER_ADMIN')")
+    @GetMapping("/aggregator-service/currency/from/{from}/to/{to}")
+    public ResponseEntity<Object> calculateCurrencyExchange(@PathVariable("from") String from,
+                                                                          @PathVariable("to") String to) {
+        return new ResponseEntity(currencyExchangeProxy.returnExchangedValue(from, to), HttpStatus.OK);
     }
 
 }
