@@ -65,6 +65,7 @@ public class AppUserServiceImpl implements AppUserService {
         AppUser appUser = checkEntityOptional(userRepository.findAppUserByUsername(username));
         Role role = checkEntityOptional(roleRepository.findByTitle(roleTitle));
         appUser.getRoles().add(role);
+        userRepository.save(appUser);
     }
 
     @Override
@@ -74,7 +75,7 @@ public class AppUserServiceImpl implements AppUserService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) {
         Optional<AppUser> userOptional = userRepository.findAppUserByUsername(username);
         AppUser user = checkEntityOptional(userOptional);
         return new org.springframework.security.core.userdetails.User(user.getUsername(),
