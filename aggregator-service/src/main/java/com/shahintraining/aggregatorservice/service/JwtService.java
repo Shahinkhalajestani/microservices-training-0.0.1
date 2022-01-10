@@ -1,5 +1,8 @@
 package com.shahintraining.aggregatorservice.service;
 
+import com.shahintraining.aggregatorservice.domain.LoginDto;
+import com.shahintraining.aggregatorservice.domain.UsernamePasswordRequest;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,4 +13,5 @@ import javax.servlet.http.HttpServletResponse;
  */
 public interface JwtService {
     void refreshToken(HttpServletRequest request, HttpServletResponse response);
+    LoginDto generateTokens(UsernamePasswordRequest usernamePasswordRequest);
 }

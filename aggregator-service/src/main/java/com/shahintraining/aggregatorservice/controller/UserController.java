@@ -1,8 +1,6 @@
 package com.shahintraining.aggregatorservice.controller;
 
-import com.shahintraining.aggregatorservice.domain.AppUser;
-import com.shahintraining.aggregatorservice.domain.Role;
-import com.shahintraining.aggregatorservice.domain.RoleToUserDto;
+import com.shahintraining.aggregatorservice.domain.*;
 import com.shahintraining.aggregatorservice.service.AppUserService;
 import com.shahintraining.aggregatorservice.service.JwtService;
 
@@ -36,6 +34,12 @@ public class UserController {
     public ResponseEntity<List<AppUser>> getUsers() {
         return ResponseEntity.ok().body(userService.getUsers());
     }
+
+    @PostMapping(value = "/user/custom-login")
+    public ResponseEntity<LoginDto> userCustomLogin(@RequestBody UsernamePasswordRequest usernamePasswordRequest) {
+        return ResponseEntity.ok(jwtTokenService.generateTokens(usernamePasswordRequest));
+    }
+
 
     @PostMapping(value = "/user/save")
     @PreAuthorize("hasAnyRole('ROLE_MANAGER')")
